@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Counter Widget</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #counter-widget {
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div id="counter-widget"></div>
+  
+  <script>
+    function updateCounter() {
+      const startDate = new Date(2023, 0, 1);
+      const currentDate = new Date();
+      
+      const timeDifference = currentDate - startDate;
+      
+      const years = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365));
+      const remainingTime = timeDifference - years * (1000 * 60 * 60 * 24 * 365);
+      const months = Math.floor(remainingTime / (1000 * 60 * 60 * 24 * 30));
+      const days = Math.floor((remainingTime % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+      
+      const counterElement = document.getElementById("counter-widget");
+      counterElement.innerHTML = `Days: ${days}, Months: ${months}, Years: ${years}`;
+    }
+    
+    updateCounter(); // Initial call
+    
+    setInterval(updateCounter, 1000); // Update every second
+  </script>
+</body>
+</html>
